@@ -10,5 +10,10 @@
             position += speed;
             return position;
         }
+
+        public string Voice()
+        {
+            return "Meow/n";
+        }
     }
 }

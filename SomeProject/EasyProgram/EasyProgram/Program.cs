@@ -6,7 +6,8 @@ namespace EasyProgram
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            Cat myCat = new Cat();
+            Console.WriteLine(myCat.Voice());
         }
     }
 }
