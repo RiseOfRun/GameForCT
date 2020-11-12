@@ -1,0 +1,7 @@
+﻿namespace EasyProgram
+{
+    class Dog
+    {
+        
+    }
+}
