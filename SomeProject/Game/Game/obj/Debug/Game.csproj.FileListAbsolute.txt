@@ -1,0 +1,9 @@
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.csprojAssemblyReference.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.Properties.Resources.resources
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.csproj.GenerateResource.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\bin\Debug\Game.exe.config
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\bin\Debug\Game.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\bin\Debug\Game.pdb
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\Game\Game\obj\Debug\Game.pdb

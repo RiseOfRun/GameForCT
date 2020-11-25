@@ -1,1 +1,8 @@
-.cache
+with izds as(select distinct t.n_izd
+              from j t
+              order by n_izd
+              limit 2 offset 2)
+
+select n_det, n_izd
+from spj
+where n_det in

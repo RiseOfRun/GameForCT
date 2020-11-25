@@ -1,0 +1,6 @@
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\bin\Debug\GeneticWorld.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\bin\Debug\GeneticWorld.pdb
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\obj\Debug\GeneticWorld.csprojAssemblyReference.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\obj\Debug\GeneticWorld.csproj.CoreCompileInputs.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\obj\Debug\GeneticWorld.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld\GeneticWorld\obj\Debug\GeneticWorld.pdb
