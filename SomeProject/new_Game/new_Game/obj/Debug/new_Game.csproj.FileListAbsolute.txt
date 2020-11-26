@@ -7,4 +7,4 @@ C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\S
 C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Debug\new_Game.csproj.CoreCompileInputs.cache
 C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Debug\new_Game.exe
 C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Debug\new_Game.pdb
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Debug\new_Game.GameField.resources
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Debug\new_Game.Form1.resources

@@ -7,18 +7,23 @@ namespace new_Game
 {
     class Tower : GameObject
     {
-        public Tower()
+        public Tower(PointF pos)
         {
             Sprite = Image.FromFile(@"new_Game\Guns\lazer_gun1.png");
-            Random r = new Random();
-            //WorldPosition = new PointF(r.Next(10),r.Next(10));
-            WorldPosition = new PointF(1,3);
+            Spawn(pos);
         }
         
         
         public override void Update()
         {
             
+        }
+
+        public override void Spawn(PointF pos)
+        {
+            GameField field = GameField.MyGameField;
+            WorldPosition = field.GetNearestCell(pos);
+            GameField.MyGameField.openCells[field.cells.IndexOf(WorldPosition)]=false;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace new_Game
 
         public abstract void Update();
 
+        public abstract void Spawn(PointF pos);
+
         public void Draw(PaintEventArgs e)
         {
             Point screenPosition = Camera.WorldToScreen(WorldPosition);
