@@ -30,7 +30,7 @@ namespace GeneticWorld
             }
             return Sum;
         }
-        double Functional(Individ trueInd)
+        public double Functional(Individ trueInd)
         {
             double Sum = 0;
             for (int i = 0; i < y.Count; i++)

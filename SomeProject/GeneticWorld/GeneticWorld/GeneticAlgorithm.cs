@@ -11,14 +11,15 @@ namespace GeneticWorld
         public static int maxParents = 10;
         public static int GenNumb = 11; //Кол-во генов (величина генотипа)
         public double MutationProbability = 0.2;
+        public double FunctionalMin = 0.1;
         public static int m = 10; //Кол-во точек x (Величина фенотипа)
         List<double> X = new List<double>(new double[m]);
-        Individ TrueIndivid = new Individ();
-        List<Individ> Population = new List<Individ>();
-        List<Individ> PopulationTemp = new List<Individ>(new Individ[populationSize2]);
+        public Individ TrueIndivid = new Individ();
+        public List<Individ> Population = new List<Individ>();
+        public List<Individ> PopulationTemp = new List<Individ>(new Individ[populationSize2]);
 
 
-        double GetRandomDouble(double maxValue)
+        public double GetRandomDouble(double maxValue)
         {
             return new Random(new System.DateTime().Millisecond).NextDouble() * maxValue;
         }
@@ -28,21 +29,26 @@ namespace GeneticWorld
             return new Random(new System.DateTime().Millisecond).Next(minValue, maxValue);
         }
 
-        GeneticAlgorithm()
+        public GeneticAlgorithm()
+        {
+            
+        }
+
+        public GeneticAlgorithm(List<double> x, List<double> gens)
         {
             //зададим параметры точек
-            X = new List<double> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            X = x;
 
             //прямая задача
             //зададим истинные значения коэффициентов(генотип)
-            TrueIndivid.gens = new List<double> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10};
+            TrueIndivid.gens = gens;
 
             //посчитаем его фенотип(y)
             TrueIndivid.SetYAndFunctional(X, TrueIndivid);
         }
 
 
-        void GenerateStartPopulation()
+        public void GenerateStartPopulation()
         {
             // Создаем первое поколение
             for (int j = 0; j < populationSize; j++)
@@ -66,10 +72,11 @@ namespace GeneticWorld
             // Сортировка по функционалу
             Population = new List<Individ>(Population.OrderBy(poper => poper.F));
         }
-        
-        int GetMother(){return GetRandomInt(0,populationSize);}
 
-        Individ GetChild(Individ father, Individ mother)
+
+        public int GetMother(){return GetRandomInt(0,populationSize);}
+
+       public Individ GetChild(Individ father, Individ mother)
         {
             int i;
             Individ child = new Individ();
@@ -79,7 +86,7 @@ namespace GeneticWorld
             return child;
         }
         
-        void Mutation(Individ ind) // Мутации
+       public void Mutation(Individ ind) // Мутации
         {
             double v=GetRandomDouble(1);
             if(v<MutationProbability)
@@ -89,9 +96,28 @@ namespace GeneticWorld
             }
         }
 
-   
+        public double Selection(double bestFunctional) // Селекция
+        {
+            int i,j;
+            for (i = 0; i < populationSize2; i++)
+            {
+                //вычислить функционал для каждого индивида
+                PopulationTemp[i].F=PopulationTemp[i].Functional(TrueIndivid);
+            }
+            // Сортировка по функционалу
+            PopulationTemp = PopulationTemp.OrderBy(poper => poper.F).ToList();
+            
+            bestFunctional=1e+30;
+            for(i=0;i<populationSize;i++)
+            {
+                for(j=0;j<GenNumb;j++){Population[i]=PopulationTemp[i];}
+            }
+            if(Population[0].F<bestFunctional) {bestFunctional=Population[0].F;}
 
-        void GenerateNewPopulation()
+            return bestFunctional;
+        } 
+
+        public void GenerateNewPopulation()
         {
             PopulationTemp = new List<Individ>();
             int i, j, k;
