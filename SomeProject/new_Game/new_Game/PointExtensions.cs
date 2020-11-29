@@ -5,6 +5,14 @@ namespace new_Game
 {
     public static class PointExtensions
     {
+        public static PointF RoundPointF(PointF b)
+        {
+            PointF roundedPoint = new PointF(
+                (float) Math.Round(b.X, 0),
+                (float) Math.Round(b.Y, 0));
+            return roundedPoint;
+        }
+        
         public static float GetLength(this PointF point)
         {
             return (float) Math.Sqrt(point.X * point.X + point.Y * point.Y);

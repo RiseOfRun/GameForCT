@@ -10,11 +10,17 @@ namespace new_Game
         public PointF WorldPosition = new PointF();
         public Image Sprite;
         public float Angle = 0;
+        public bool Alive = true;
 
         public abstract void Update();
 
         public abstract void Spawn(PointF pos);
 
+        public void SetLookTo(PointF target)
+        {
+            PointF diraction = PointExtensions.Sub(WorldPosition, target);
+            Angle = PointExtensions.GetAngle(new PointF(-1,0), diraction);
+        }
         public void Draw(PaintEventArgs e)
         {
             Point screenPosition = Camera.WorldToScreen(WorldPosition);

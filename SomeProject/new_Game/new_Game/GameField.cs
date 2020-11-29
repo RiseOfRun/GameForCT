@@ -28,13 +28,13 @@ namespace new_Game
         private int width;
         private int height;
 
-        public PointF GetNearestCell(PointF b)
+        public bool isFree(PointF pos)
         {
-            PointF roundedPoint = new PointF(
-                (float) Math.Round(b.X, 0),
-                (float) Math.Round(b.Y, 0));
-            return roundedPoint;
+            PointF roundedPoint = PointExtensions.RoundPointF(pos);
+            int cellInd = cells.IndexOf(roundedPoint);
+            return cellInd != -1 && openCells[cellInd];
         }
+        
         public GameField(int width, int height)
         {
             this.width = width;

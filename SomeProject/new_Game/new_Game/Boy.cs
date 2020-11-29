@@ -11,7 +11,6 @@ namespace new_Game
     {
         private float speed = 0.2f;
         List<PointF> path = new List<PointF>();
-        
 
         public List<PointF> FindPath(GameField field, PointF b)
         {
@@ -58,6 +57,7 @@ namespace new_Game
                     pathFound = true;
                     break;
                 }
+                
 
                 List<int> acident = field.GetAllAccidentCells(v);
                 
