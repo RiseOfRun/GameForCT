@@ -21,7 +21,7 @@ namespace new_Game
             PointF diraction = PointExtensions.Sub(WorldPosition, target);
             Angle = PointExtensions.GetAngle(new PointF(-1,0), diraction);
         }
-        public void Draw(PaintEventArgs e)
+        public virtual void Draw(PaintEventArgs e)
         {
             Point screenPosition = Camera.WorldToScreen(WorldPosition);
             

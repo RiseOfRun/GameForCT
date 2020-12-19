@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Linq;
 
 namespace new_Game
 {
@@ -9,8 +10,25 @@ namespace new_Game
         public int score = 0;
 
         public Towers ChosenTower = Towers.SmallTower;
+
+        public bool CanBuilded(PointF pos)
+        {
+            foreach (var item in Form1.gameObjects.OfType<Enemy>())
+            {
+                if (pos.Equals(PointExtensions.RoundPointF(item.WorldPosition))||pos.Equals(GameField.MyGameField.Start)||pos.Equals(GameField.MyGameField.Finish))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
         public void BuildTower(PointF tower)
         {
+            if (!CanBuilded(tower))
+            {
+                return;
+            }
             int cost = GameController.Controller.TowerList[ChosenTower];
             if (!GameController.Controller.field.isFree(tower))
             {

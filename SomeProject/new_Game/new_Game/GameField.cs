@@ -21,7 +21,9 @@ namespace new_Game
                 return instance;
             }
         }
-        
+
+        public PointF Start;
+        public PointF Finish;
         public bool[] openCells;
         public List<PointF> cells;
         private int[] weights;
@@ -47,16 +49,13 @@ namespace new_Game
                     cells.Add(new PointF(j,i));
                 }
             }
+            
+            Start = new PointF(0,0);
+            Finish = new PointF(width-1, height-1);
 
             openCells = Enumerable.Repeat(true, cells.Count).ToArray();
             weights = Enumerable.Repeat(1, cells.Count).ToArray();
-            Random r = new Random();
-            int count = r.Next(4, width * height - width * height / 4);
-            for (int i = 0; i<count; i++)
-            {
-                openCells[r.Next(2,width*height-2)] = false;
-            }
-            
+
         }
 
         public int GCost(int start, int target)

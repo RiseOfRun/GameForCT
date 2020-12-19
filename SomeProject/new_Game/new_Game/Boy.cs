@@ -7,10 +7,29 @@ using System.Windows.Forms;
 
 namespace new_Game
 {
-    class Boy : GameObject
+    public abstract class Enemy : GameObject
     {
-        private float speed = 0.2f;
-        List<PointF> path = new List<PointF>();
+        public double MaxHealth = 100;
+        public double CurrentHealth = 100;
+        public int Reward = 10;
+        public int Punishment = 1;
+        public override void Draw(PaintEventArgs e)
+        {
+            base.Draw(e);
+            Point healthBarPosition = Camera.WorldToScreen(WorldPosition);
+           
+            Brush b = new SolidBrush(Color.Red);
+            e.Graphics.FillRectangle(b,healthBarPosition.X-50,healthBarPosition.Y-30, (int)100, 10);
+            Brush greenB = new SolidBrush(Color.LawnGreen);          
+            e.Graphics.FillRectangle(greenB,healthBarPosition.X-50,healthBarPosition.Y-30, (int)(CurrentHealth/MaxHealth*100), 10);
+            Pen p = new Pen(Color.Red);
+            e.Graphics.DrawRectangle(p, healthBarPosition.X-50,healthBarPosition.Y-30, 100,10);
+        }
+    }
+    class Boy : Enemy
+    {
+        private float speed = 0.05f;
+        public List<PointF> path = new List<PointF>();
 
         public List<PointF> FindPath(GameField field, PointF b)
         {
@@ -74,23 +93,21 @@ namespace new_Game
 
             if (!pathFound)
             {
-                return new List<PointF>();
+                return new List<PointF> {field.cells[field.cells.Count - 1]};
+
             }
             foreach (var node in p)
             {
                 path.Add(field.cells[node]);
             }
-
+            path.RemoveRange(0,1);
             return path;
         }
 
         void WannaMove(GameField field)
         {
             Random r = new Random();
-            PointF pos = new PointF(
-                (float) (r.NextDouble() * 10 - 0.6),
-                (float) (r.NextDouble() * 10 - 0.6));
-            path = FindPath(field, pos);
+            path = FindPath(field, field.Finish);
         }
         public Boy(GameField field)
         {
@@ -117,6 +134,11 @@ namespace new_Game
 
         public override void Update()
         {
+            if (WorldPosition.Equals(GameField.MyGameField.Finish))
+            {
+                GameController.Controller.CurrentPlayer.Lives -= this.Punishment;
+                this.Alive = false;
+            }
             if (path.Count==0)
             {
                 WannaMove(GameField.MyGameField);

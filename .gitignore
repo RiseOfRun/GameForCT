@@ -1,8 +1,18 @@
-with izds as(select distinct t.n_izd
-              from j t
-              order by n_izd
-              limit 2 offset 2)
+with red_dets as (select n_det from p
+where cvet = 'Красный' or cvet = 'красный'
+),
 
-select n_det, n_izd
-from spj
-where n_det in
+long_izds as (select n_izd from j
+where length(name) >= 7
+)
+
+select * from s
+where s.n_post in (
+select n_post from spj 
+except
+select n_post from spj
+where n_izd not in (select * from long_izds)
+except
+select n_post from spj
+where n_det not in (select * from red_dets)
+)

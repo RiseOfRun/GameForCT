@@ -8,10 +8,11 @@ namespace new_Game
 {
     public class Tower : GameObject
     {
-        public GameObject Target;
+        public Enemy Target;
 
-        private float firerate = 0.0001f;
+        private float firerate = 0.3f;
         private Timer shootT = new Timer();
+        public double damage = 60;
 
         private void ShootTimer_tick(object sender, EventArgs e)
         {
@@ -20,8 +21,9 @@ namespace new_Game
 
         public void Shoot()
         {
-            if (Target == null)
+            if (Target == null || !Target.Alive)
             {
+                Target = FindTarget();
                 return;
             }
             Form1.gameObjects.Add(new Bullet(Target,1,@"new_Game\Guns\SmallBullet.png",WorldPosition,this));
@@ -29,7 +31,7 @@ namespace new_Game
         
         public Tower(PointF pos)
         {
-            shootT.Interval = (int) 1;
+            shootT.Interval = (int) (firerate*1000);
             shootT.Enabled = true;
             shootT.Tick += ShootTimer_tick;
             shootT.Start();
@@ -37,17 +39,10 @@ namespace new_Game
             Spawn(pos);
         }
 
-        public GameObject FindTarget()
+        public Enemy FindTarget()
         {
-            GameObject target = null;
-            try
-            {
-                target = Form1.gameObjects.OfType<Boy>().First();
-            }
-            catch (Exception e)
-            {
-                target = null;
-            }
+            Enemy target = null;
+            target = Form1.gameObjects.OfType<Boy>().FirstOrDefault(x=>x.Alive && x is Enemy);
 
             return target;
         }
@@ -64,6 +59,15 @@ namespace new_Game
 
         }
 
+        public bool CanBeBuilded()
+        {
+            foreach (var VARIABLE in Form1.gameObjects.OfType<Boy>())
+            {
+                
+            }
+
+            return true;
+        }
         public override void Spawn(PointF pos)
         {
             GameField field = GameField.MyGameField;
@@ -73,6 +77,10 @@ namespace new_Game
             }
             WorldPosition = PointExtensions.RoundPointF(pos);
             GameField.MyGameField.openCells[field.cells.IndexOf(WorldPosition)]=false;
+            foreach (var item in Form1.gameObjects.OfType<Boy>())
+            {
+                item.path = new List<PointF>();
+            }
         }
     }
 }
