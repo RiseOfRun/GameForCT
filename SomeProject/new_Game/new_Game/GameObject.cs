@@ -11,6 +11,7 @@ namespace new_Game
         public Image Sprite;
         public float Angle = 0;
         public bool Alive = true;
+        public float scale = 1;
 
         public abstract void Update();
 
@@ -26,9 +27,10 @@ namespace new_Game
             Point screenPosition = Camera.WorldToScreen(WorldPosition);
             
             GraphicsState transState = e.Graphics.Save();
-            
+
             e.Graphics.TranslateTransform(screenPosition.X, screenPosition.Y);
             e.Graphics.RotateTransform(Angle);
+            e.Graphics.ScaleTransform(scale,scale);
             e.Graphics.TranslateTransform(-Sprite.Width / 2f, -Sprite.Height / 2f);
             e.Graphics.DrawImage(Sprite, new Point(0,0));
             

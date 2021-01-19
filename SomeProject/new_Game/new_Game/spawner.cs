@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,12 +8,14 @@ namespace new_Game
 {
     public class Spawner
     {
-        private List<Enemy> enemies = new List<Enemy>();
+        public int Count = 0;
+        public List<Enemy> Enemies = new List<Enemy>();
         private Timer spawnT = new Timer();
+        public bool BossWave = false;
 
         public Spawner()
         {
-            spawnT.Interval = (int) 16;
+            spawnT.Interval = (int) 1000;
             spawnT.Tick += SpawnTimer_Tick;
         }
 
@@ -23,20 +26,41 @@ namespace new_Game
 
         private void Spawn()
         {
-            if (enemies.Count==0)
+            double health = 0;
+            
+            
+            if (Count%10 == 0 && Count!=0)
             {
-                spawnT.Enabled = false;
+                health = Configs.BaseMegaBoyHealh;
+                health = health + Count*Configs.LevelMultiplier*5;
+                Form1.gameObjects.Add(new MegaBoy(GameField.MyGameField,health));
+                BossWave = true;
+                Count += 1;
                 return;
             }
-            Form1.gameObjects.Add(enemies[0]);
-            enemies.RemoveAt(0);
+            if (Count%3 == 0 && Count!=0)
+            {
+                health = Configs.BaseBoyHealh;
+                health = health + Count*Configs.LevelMultiplier;
+                Form1.gameObjects.Add(new FastBoy(GameField.MyGameField,health));
+                BossWave = true;
+                Count += 1;
+                return;
+            }
+            health = Configs.BaseBoyHealh;
+            health = health + Count*Configs.LevelMultiplier;
+            Form1.gameObjects.Add(new Boy(GameField.MyGameField,health));
+            Count += 1;
         }
-
-        public Enemy Target { get; set; }
-
+        
         public void StartSpawn()
         {
             spawnT.Enabled = true;
+        }
+
+        public void StopSpawn()
+        {
+            spawnT.Enabled = false;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace new_Game
     }
     class Boy : Enemy
     {
-        private float speed = 0.1f;
+        public float speed = 0.05f;
         public List<PointF> path = new List<PointF>();
 
         public List<PointF> FindPath(GameField field, PointF b)
@@ -109,8 +109,11 @@ namespace new_Game
             Random r = new Random();
             path = FindPath(field, field.Finish);
         }
-        public Boy(GameField field)
+
+        public Boy(GameField field, double health = 100)
         {
+            MaxHealth = health;
+            CurrentHealth = health;
             Sprite = Image.FromFile(@"new_Game\Guns\Boy.png");
             // path.Add(new PointF(
             //     9.5f,
@@ -164,6 +167,27 @@ namespace new_Game
         public override void Spawn(PointF pos)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    class MegaBoy : Boy
+    {
+        public MegaBoy(GameField field, double health = 100) : base(field, health)
+        {
+            Sprite = Image.FromFile(@"new_Game\Boys\MegaBoy.png");
+            Reward = 30;
+            scale = 2;
+        }
+    }
+
+    class FastBoy : Boy
+    {
+        public FastBoy(GameField field, double health = 100) : base(field, health)
+        {
+            Sprite = Image.FromFile(@"new_Game\Boys\FastBoy.png");
+            Reward = 10;
+            speed = 0.1f;
+            scale = 0.8f;
         }
     }
 }

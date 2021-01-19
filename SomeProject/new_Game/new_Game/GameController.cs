@@ -9,14 +9,17 @@ namespace new_Game
     }
     class GameController
     {
+        public bool UnPaused = false;
         public int EnemyCount = 0;
+        public float multiplier = 100;
+        public int TickCount = 0;
         public GameField Field;
         public Dictionary<Towers, int> TowerList = new Dictionary<Towers, int>();
         public List<Player> players = new List<Player>();
         public Player CurrentPlayer;
-        
         public GameField field = GameField.MyGameField;
         private static GameController instance;
+        public Spawner spawner = new Spawner();
 
         public static GameController Controller
         {

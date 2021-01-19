@@ -9,10 +9,11 @@ namespace new_Game
     public class Tower : GameObject
     {
         public Enemy Target;
-
-        private float firerate = 0.02f;
+        private float firerate = 3f;
         private Timer shootT = new Timer();
-        public double damage = 6;
+        public double damage = 150;
+        public int cost = 100;
+        public float range = 3f;
 
         private void ShootTimer_tick(object sender, EventArgs e)
         {
@@ -26,24 +27,31 @@ namespace new_Game
                 Target = FindTarget();
                 return;
             }
+
+            double distance = PointExtensions.Sub(WorldPosition,Target.WorldPosition).GetLength();
+            if (distance>range)
+            {
+                Target = FindTarget();
+                return;
+            }
             Form1.gameObjects.Add(new Bullet(Target,1,@"new_Game\Guns\SmallBullet.png",WorldPosition,this));
         }
         
-        public Tower(PointF pos)
+        public Tower(PointF pos, int cost = 100)
         {
-            shootT.Interval = (int) (firerate*1000);
+            shootT.Interval = (int) (1000/firerate);
             shootT.Enabled = true;
             shootT.Tick += ShootTimer_tick;
             shootT.Start();
             Sprite = Image.FromFile(@"new_Game\Guns\lazer_gun1.png");
+            this.cost = cost;
             Spawn(pos);
         }
 
         public Enemy FindTarget()
         {
             Enemy target = null;
-            target = Form1.gameObjects.OfType<Boy>().FirstOrDefault(x=>x.Alive && x is Enemy);
-
+            target = Form1.gameObjects.OfType<Boy>().FirstOrDefault(x=>x.Alive && x is Enemy && PointExtensions.Distance(x.WorldPosition,WorldPosition)<range);
             return target;
         }
         
@@ -81,6 +89,13 @@ namespace new_Game
             {
                 item.path = new List<PointF>();
             }
+        }
+    }
+
+    class FocusTower : Tower
+    {
+        public FocusTower(PointF pos, int cost = 100) : base(pos, cost)
+        {
         }
     }
 }

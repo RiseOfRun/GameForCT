@@ -12,7 +12,11 @@ namespace new_Game
                 (float) Math.Round(b.Y, 0));
             return roundedPoint;
         }
-        
+
+        public static float Distance(PointF a, PointF b)
+        {
+            return Sub(a, b).GetLength();
+        }
         public static float GetLength(this PointF point)
         {
             string BD = "";
