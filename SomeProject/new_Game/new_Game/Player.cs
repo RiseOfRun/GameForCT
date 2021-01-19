@@ -17,6 +17,7 @@ namespace new_Game
         public int score = 0;
         public ControlMode Mode = ControlMode.Build;
         public Towers ChosenTower = Towers.SmallTower;
+        public string Name = "user";
 
         public bool CanBuilt(PointF pos)
         {
@@ -60,7 +61,18 @@ namespace new_Game
             if (money>=GameController.Controller.TowerList[ChosenTower])
             {
                 money -= cost;
-                Form1.gameObjects.Add(new Tower(tower));
+                switch (ChosenTower)
+                {
+                    case Towers.SmallTower:
+                        Form1.gameObjects.Add(new Tower(tower));
+                        break;
+                    case Towers.FocusTower:
+                        Form1.gameObjects.Add(new FocusTower(tower));
+                        break;
+                    case Towers.AntiAirTower:
+                        Form1.gameObjects.Add(new AntiAirTower(tower));
+                        break;
+                }
             }
         }
 
@@ -71,9 +83,9 @@ namespace new_Game
             contains = SelectTower(tower, out t);
             if (contains)
             {
-                GameController.Controller.CurrentPlayer.money += t.cost / 2;
-                Form1.gameObjects.Remove(t);
-                GameField.MyGameField.openCells[GameField.MyGameField.cells.IndexOf(tower)] = true;
+                
+                GameController.Controller.CurrentPlayer.money += t.cost/2;
+                t.Alive = false;
             }
         }
     }

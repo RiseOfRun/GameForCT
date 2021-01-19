@@ -15,7 +15,7 @@ namespace new_Game
 
         public Spawner()
         {
-            spawnT.Interval = (int) 1000;
+            spawnT.Interval = (int) 800;
             spawnT.Tick += SpawnTimer_Tick;
         }
 
@@ -28,11 +28,20 @@ namespace new_Game
         {
             double health = 0;
             
+            if (Count%8 == 0 && Count!=0)
+            {
+                health = Configs.AirPlaneHealh;
+                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier;
+                Form1.gameObjects.Add(new AirUnit(GameField.MyGameField,health));
+                BossWave = true;
+                Count += 1;
+                return;
+            }
             
             if (Count%10 == 0 && Count!=0)
             {
                 health = Configs.BaseMegaBoyHealh;
-                health = health + Count*Configs.LevelMultiplier*5;
+                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
                 Form1.gameObjects.Add(new MegaBoy(GameField.MyGameField,health));
                 BossWave = true;
                 Count += 1;
@@ -41,14 +50,14 @@ namespace new_Game
             if (Count%3 == 0 && Count!=0)
             {
                 health = Configs.BaseBoyHealh;
-                health = health + Count*Configs.LevelMultiplier;
+                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
                 Form1.gameObjects.Add(new FastBoy(GameField.MyGameField,health));
                 BossWave = true;
                 Count += 1;
                 return;
             }
             health = Configs.BaseBoyHealh;
-            health = health + Count*Configs.LevelMultiplier;
+            health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
             Form1.gameObjects.Add(new Boy(GameField.MyGameField,health));
             Count += 1;
         }

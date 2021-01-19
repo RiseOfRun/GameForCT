@@ -13,6 +13,10 @@ namespace new_Game
         public bool Alive = true;
         public float scale = 1;
 
+        public virtual void Remove()
+        {
+            Form1.gameObjects.Remove(this);
+        }
         public abstract void Update();
 
         public abstract void Spawn(PointF pos);

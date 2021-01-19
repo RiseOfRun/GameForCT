@@ -9,8 +9,10 @@ namespace new_Game
 {
     public abstract class Enemy : GameObject
     {
+        public float speed = 0.05f;
         public double MaxHealth = 100;
         public double CurrentHealth = 100;
+        
         public int Reward = 10;
         public int Punishment = 1;
         public override void Draw(PaintEventArgs e)
@@ -28,7 +30,6 @@ namespace new_Game
     }
     class Boy : Enemy
     {
-        public float speed = 0.05f;
         public List<PointF> path = new List<PointF>();
 
         public List<PointF> FindPath(GameField field, PointF b)
@@ -114,24 +115,8 @@ namespace new_Game
         {
             MaxHealth = health;
             CurrentHealth = health;
-            Sprite = Image.FromFile(@"new_Game\Guns\Boy.png");
-            // path.Add(new PointF(
-            //     9.5f,
-            //     9.5f
-            // ));
-            // path.Add(new PointF(
-            //     10,
-            //     1
-            // ));
-            // return;
-            // Random r = new Random();
-            // for (int i = 0; i < 100; i++)
-            // {
-            //     path.Add(new PointF(
-            //         (float) (r.NextDouble()*10-0.5),
-            //         (float) (r.NextDouble()*10-0.5))
-            //     );
-            // }
+            Sprite = Image.FromFile(@"new_Game\Boys\Boy.png");
+            Reward = Configs.BoyReward;
             WannaMove(GameField.MyGameField);
         }
 
@@ -147,7 +132,7 @@ namespace new_Game
                 WannaMove(GameField.MyGameField);
                 return;
             }
-            if (PointExtensions.Sub(WorldPosition, path[0]).GetLength()<speed)
+            if (Equals(PointExtensions.Sub(WorldPosition, path[0]).GetLength(),speed)||PointExtensions.Sub(WorldPosition, path[0]).GetLength()<speed)
             {
                 WorldPosition = path[0];
                 path.RemoveAt(0);
@@ -175,7 +160,7 @@ namespace new_Game
         public MegaBoy(GameField field, double health = 100) : base(field, health)
         {
             Sprite = Image.FromFile(@"new_Game\Boys\MegaBoy.png");
-            Reward = 30;
+            Reward = Configs.MegaBoyReward;
             scale = 2;
         }
     }
@@ -185,9 +170,49 @@ namespace new_Game
         public FastBoy(GameField field, double health = 100) : base(field, health)
         {
             Sprite = Image.FromFile(@"new_Game\Boys\FastBoy.png");
-            Reward = 10;
+            Reward = Configs.FastBoyReward;
             speed = 0.1f;
             scale = 0.8f;
+        }
+    }
+
+    class AirUnit : Enemy
+    {
+        public AirUnit(GameField field, double health = 100)
+        {
+            Punishment = 3;
+            Reward = Configs.AirPlaneReward;
+            MaxHealth = health;
+            CurrentHealth = health;
+            Sprite = Image.FromFile(@"new_Game\Boys\AirPlane.png");
+           
+        }
+        public override void Update()
+        {
+            if (WorldPosition.Equals(GameField.MyGameField.Finish))
+            {
+                GameController.Controller.CurrentPlayer.Lives -= this.Punishment;
+                this.Alive = false;
+            }
+
+            PointF target = GameField.MyGameField.Finish;
+            PointF diraction = new PointF(target.X-WorldPosition.X,
+                target.Y-WorldPosition.Y);
+            float length = diraction.GetLength();
+            diraction = PointExtensions.Scale(diraction, 1 / length);
+            WorldPosition=PointExtensions.Sum(WorldPosition,PointExtensions.Scale(diraction,speed));
+            Angle = PointExtensions.GetAngle(new PointF(1, 0), diraction);
+            if (PointExtensions.Sub(WorldPosition, target).GetLength()<speed)
+            {
+                WorldPosition = target;
+                return;
+            }
+
+        }
+
+        public override void Spawn(PointF pos)
+        {
+            throw new NotImplementedException();
         }
     }
 }

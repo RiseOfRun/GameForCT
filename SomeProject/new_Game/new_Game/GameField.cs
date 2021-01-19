@@ -118,6 +118,16 @@ namespace new_Game
                     Brush b = new SolidBrush(Color.Black);
                     e.Graphics.FillRectangle(b,screenPos.X-Camera.Shift, screenPos.Y-Camera.Shift,Camera.Scale,Camera.Scale);
                 }
+                if (cell==Start)
+                {
+                    Brush b = new SolidBrush(Color.Yellow);
+                    e.Graphics.FillRectangle(b,screenPos.X-Camera.Shift, screenPos.Y-Camera.Shift,Camera.Scale,Camera.Scale);
+                }
+                if (cell==Finish)
+                {
+                    Brush b = new SolidBrush(Color.Red);
+                    e.Graphics.FillRectangle(b,screenPos.X-Camera.Shift, screenPos.Y-Camera.Shift,Camera.Scale,Camera.Scale);
+                }
                 e.Graphics.DrawRectangle(p,screenPos.X-Camera.Shift, screenPos.Y-Camera.Shift,Camera.Scale,Camera.Scale);
             }
         }

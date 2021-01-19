@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,10 +9,12 @@ namespace new_Game
 {
     public class Tower : GameObject
     {
+        
+
         public Enemy Target;
-        private float firerate = 3f;
-        private Timer shootT = new Timer();
-        public double damage = 150;
+        protected float firerate = 2f;
+        protected Timer shootT = new Timer();
+        public double damage = 200;
         public int cost = 100;
         public float range = 3f;
 
@@ -19,9 +22,18 @@ namespace new_Game
         {
             Shoot();
         }
-
-        public void Shoot()
+        public override void Remove()
         {
+            shootT.Stop();
+            GameField.MyGameField.openCells[GameField.MyGameField.cells.IndexOf(WorldPosition)] = true;
+            base.Remove();
+        }
+        public virtual void Shoot()
+        {
+            if (!GameController.Controller.UnPaused)
+            {
+                return;
+            }
             if (Target == null || !Target.Alive)
             {
                 Target = FindTarget();
@@ -34,7 +46,7 @@ namespace new_Game
                 Target = FindTarget();
                 return;
             }
-            Form1.gameObjects.Add(new Bullet(Target,1,@"new_Game\Guns\SmallBullet.png",WorldPosition,this));
+            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\SmallBullet.png",WorldPosition,this));
         }
         
         public Tower(PointF pos, int cost = 100)
@@ -48,7 +60,7 @@ namespace new_Game
             Spawn(pos);
         }
 
-        public Enemy FindTarget()
+        public virtual Enemy FindTarget()
         {
             Enemy target = null;
             target = Form1.gameObjects.OfType<Boy>().FirstOrDefault(x=>x.Alive && x is Enemy && PointExtensions.Distance(x.WorldPosition,WorldPosition)<range);
@@ -94,8 +106,91 @@ namespace new_Game
 
     class FocusTower : Tower
     {
+        public override Enemy FindTarget()
+        {
+            Enemy target = null;
+            target = Form1.gameObjects.OfType<FastBoy>().FirstOrDefault(x=>x.Alive && x is Enemy && PointExtensions.Distance(x.WorldPosition,WorldPosition)<range);
+            if (target==null)
+            {
+                target = Form1.gameObjects.OfType<Boy>().FirstOrDefault(x=>x.Alive && x is Enemy && PointExtensions.Distance(x.WorldPosition,WorldPosition)<range);
+            }
+            return target;
+        }
+
+        public override void Shoot()
+        {
+            if (!GameController.Controller.UnPaused)
+            {
+                return;
+            }
+            if (Target == null || !Target.Alive)
+            {
+                Target = FindTarget();
+                return;
+            }
+
+            double distance = PointExtensions.Sub(WorldPosition,Target.WorldPosition).GetLength();
+            if (distance>range)
+            {
+                Target = FindTarget();
+                return;
+            }
+            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\bitBullet.png",WorldPosition,this,0.3f));
+        }
+        
         public FocusTower(PointF pos, int cost = 100) : base(pos, cost)
         {
+            shootT.Stop();
+            firerate = firerate*6;
+            damage = damage / 5;
+            shootT.Interval = (int) (1000 / firerate);
+            shootT.Start();
+            Sprite = Image.FromFile(@"new_Game\Guns\focus_tower.png");
+            this.cost = Configs.FocusTowerCost;
+            Spawn(pos);
+        }
+    }
+    class AntiAirTower : Tower
+    {
+        public override Enemy FindTarget()
+        {
+            Enemy target = null;
+            target = Form1.gameObjects.OfType<AirUnit>().FirstOrDefault(x=>x.Alive && x is Enemy && PointExtensions.Distance(x.WorldPosition,WorldPosition)<range);
+            return target;
+        }
+
+        public override void Shoot()
+        {
+            if (!GameController.Controller.UnPaused)
+            {
+                return;
+            }
+            if (Target == null || !Target.Alive)
+            {
+                Target = FindTarget();
+                return;
+            }
+
+            double distance = PointExtensions.Sub(WorldPosition,Target.WorldPosition).GetLength();
+            if (distance>range)
+            {
+                Target = FindTarget();
+                return;
+            }
+            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\Rocket.png",WorldPosition,this,0.3f));
+        }
+        
+        public AntiAirTower(PointF pos, int cost = 100) : base(pos, cost)
+        {
+            shootT.Stop();
+            firerate = 0.7f;
+            range = 10;
+            damage = 1000;
+            shootT.Interval = (int) (1000 / firerate);
+            shootT.Start();
+            Sprite = Image.FromFile(@"new_Game\Guns\AntiAir_tower.png");
+            this.cost = Configs.AntiAirTowerCost;
+            Spawn(pos);
         }
     }
 }

@@ -12,17 +12,18 @@ namespace new_Game
     public class Bullet : GameObject
     {
         private float speed = 0.5f;
-        private float damage;
+        private double damage;
         private Enemy target;
         private Tower parent;
 
-        public Bullet(Enemy target, float damage, string sprite, PointF position, Tower parent)
+        public Bullet(Enemy target,double damage, string sprite, PointF position, Tower parent,float speed = 0.5f)
         {
             Sprite = Image.FromFile(sprite);
             this.WorldPosition = position;
             this.target = target;
             this.damage = damage;
             this.parent = parent;
+            this.speed = speed;
         }
         
         public override void Update()
@@ -39,7 +40,7 @@ namespace new_Game
             WorldPosition=PointExtensions.Sum(WorldPosition,PointExtensions.Scale(diraction,speed));
             if (PointExtensions.Sub(WorldPosition, target.WorldPosition).GetLength()<speed)
             {
-                target.CurrentHealth -= parent.damage;
+                target.CurrentHealth -= damage;
                 if (target.CurrentHealth < 0 && target.Alive)
                 {
                     target.Alive = false;
