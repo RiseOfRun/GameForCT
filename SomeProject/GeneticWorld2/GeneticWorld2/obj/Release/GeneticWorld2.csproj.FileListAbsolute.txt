@@ -1,6 +1,0 @@
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\bin\Release\GeneticWorld2.exe
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\bin\Release\GeneticWorld2.pdb
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\obj\Release\GeneticWorld2.csprojAssemblyReference.cache
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\obj\Release\GeneticWorld2.csproj.CoreCompileInputs.cache
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\obj\Release\GeneticWorld2.exe
-C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\GeneticWorld2\GeneticWorld2\obj\Release\GeneticWorld2.pdb
