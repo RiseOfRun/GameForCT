@@ -64,7 +64,7 @@ namespace new_Game
                 switch (ChosenTower)
                 {
                     case Towers.SmallTower:
-                        Form1.gameObjects.Add(new Tower(tower));
+                        Form1.gameObjects.Add(new Tower(tower,Configs.BaseTowerCost));
                         break;
                     case Towers.FocusTower:
                         Form1.gameObjects.Add(new FocusTower(tower));
@@ -72,6 +72,11 @@ namespace new_Game
                     case Towers.AntiAirTower:
                         Form1.gameObjects.Add(new AntiAirTower(tower));
                         break;
+                }
+
+                foreach (var item in Form1.gameObjects.OfType<Boy>())
+                {
+                    item.WannaMove(GameField.MyGameField);
                 }
             }
         }

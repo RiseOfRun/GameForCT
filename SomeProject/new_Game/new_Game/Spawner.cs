@@ -28,20 +28,19 @@ namespace new_Game
         {
             double health = 0;
             
-            if (Count%8 == 0 && Count!=0)
+            if (Count%6 == 0 && Count!=0)
             {
                 health = Configs.AirPlaneHealh;
-                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier;
+                health = health + (1/Configs.StartDificultyMultiplier*Math.Pow(Count,Configs.AirScaleSpeedMultiplier))*Configs.LevelMultiplier*health;
                 Form1.gameObjects.Add(new AirUnit(GameField.MyGameField,health));
                 BossWave = true;
                 Count += 1;
-                return;
             }
             
             if (Count%10 == 0 && Count!=0)
             {
                 health = Configs.BaseMegaBoyHealh;
-                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
+                health = health + (1/Configs.StartDificultyMultiplier*Math.Pow(Count,Configs.ScaleSpeedMultiplier))*Configs.LevelMultiplier*health;
                 Form1.gameObjects.Add(new MegaBoy(GameField.MyGameField,health));
                 BossWave = true;
                 Count += 1;
@@ -50,14 +49,14 @@ namespace new_Game
             if (Count%3 == 0 && Count!=0)
             {
                 health = Configs.BaseBoyHealh;
-                health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
+                health = health + (1/Configs.StartDificultyMultiplier*Math.Pow(Count,Configs.ScaleSpeedMultiplier))*Configs.LevelMultiplier*health;
                 Form1.gameObjects.Add(new FastBoy(GameField.MyGameField,health));
                 BossWave = true;
                 Count += 1;
                 return;
             }
             health = Configs.BaseBoyHealh;
-            health = health + (1/Configs.ScaleMultiplier*Count*Count)*Configs.LevelMultiplier*health;
+            health = health + (1/Configs.StartDificultyMultiplier*Count*Count)*Configs.LevelMultiplier*health;
             Form1.gameObjects.Add(new Boy(GameField.MyGameField,health));
             Count += 1;
         }

@@ -105,10 +105,14 @@ namespace new_Game
             return path;
         }
 
-        void WannaMove(GameField field)
+        public void WannaMove(GameField field)
         {
             Random r = new Random();
             path = FindPath(field, field.Finish);
+            if (path.Count==0)
+            {
+                path.Add(GameField.MyGameField.Finish);
+            }
         }
 
         public Boy(GameField field, double health = 100)
