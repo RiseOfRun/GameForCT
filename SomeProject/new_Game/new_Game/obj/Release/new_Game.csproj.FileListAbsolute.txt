@@ -1,0 +1,10 @@
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\bin\Release\new_Game.exe.config
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\bin\Release\new_Game.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\bin\Release\new_Game.pdb
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.csprojAssemblyReference.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.Form1.resources
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.Properties.Resources.resources
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.csproj.GenerateResource.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.csproj.CoreCompileInputs.cache
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.exe
+C:\Users\runi5\OneDrive\Рабочий стол\studing\about_git\MyRepository\SomeProject\new_Game\new_Game\obj\Release\new_Game.pdb
