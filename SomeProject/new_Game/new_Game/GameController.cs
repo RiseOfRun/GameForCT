@@ -13,6 +13,7 @@ namespace new_Game
     }
     class GameController
     {
+        public bool GameStarted = false;
         public bool UnPaused = false;
         public int EnemyCount = 0;
         public float multiplier = 100;
@@ -25,7 +26,7 @@ namespace new_Game
         private static GameController instance;
         public Spawner spawner = new Spawner();
         public List<string> TopTen;
-
+        
         public static GameController Controller
         {
             get

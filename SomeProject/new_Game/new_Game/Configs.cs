@@ -2,6 +2,7 @@
 {
     public static class Configs
     {
+        public static string PlayerName = "User";
         public static double BaseBoyHealh = 100;
         public static double AirPlaneHealh = 300;
         public static double BaseMegaBoyHealh = 300;

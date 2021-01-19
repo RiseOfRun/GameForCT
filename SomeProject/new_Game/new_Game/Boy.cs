@@ -184,7 +184,7 @@ namespace new_Game
     {
         public AirUnit(GameField field, double health = 100)
         {
-            Punishment = 3;
+            Punishment = 12;
             Reward = Configs.AirPlaneReward;
             MaxHealth = health;
             CurrentHealth = health;
