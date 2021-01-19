@@ -17,7 +17,12 @@ namespace new_Game
         public int score = 0;
         public ControlMode Mode = ControlMode.Build;
         public Towers ChosenTower = Towers.SmallTower;
-        public string Name = Configs.PlayerName;
+        public string Name;
+
+        public Player()
+        {
+            Name = Configs.PlayerName;
+        }
 
         public bool CanBuilt(PointF pos)
         {

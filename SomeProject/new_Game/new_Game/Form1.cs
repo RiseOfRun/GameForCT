@@ -249,6 +249,10 @@ namespace new_Game
             if (e.KeyCode==Keys.Enter)
             {
                 Configs.PlayerName = textBox1.Text;
+                GameController.Controller.CurrentPlayer.Name = Configs.PlayerName;
+                e.Handled=true;
+                e.SuppressKeyPress=true;
+
             }
         }
 
