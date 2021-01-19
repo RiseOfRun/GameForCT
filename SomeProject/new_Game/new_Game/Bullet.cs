@@ -27,10 +27,7 @@ namespace new_Game
         
         public override void Update()
         {
-            if (!target.Alive)
-            {
-                this.Alive = false;
-            }
+            
             PointF diraction = new PointF(target.WorldPosition.X-WorldPosition.X,
                 target.WorldPosition.Y-WorldPosition.Y);
             float length = diraction.GetLength();

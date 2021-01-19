@@ -10,9 +10,9 @@ namespace new_Game
     {
         public Enemy Target;
 
-        private float firerate = 0.3f;
+        private float firerate = 0.02f;
         private Timer shootT = new Timer();
-        public double damage = 60;
+        public double damage = 6;
 
         private void ShootTimer_tick(object sender, EventArgs e)
         {

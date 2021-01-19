@@ -15,7 +15,7 @@ namespace new_Game
         
         public static float GetLength(this PointF point)
         {
-            string BD = ""
+            string BD = "";
             return (float) Math.Sqrt(point.X * point.X + point.Y * point.Y);
         }
 

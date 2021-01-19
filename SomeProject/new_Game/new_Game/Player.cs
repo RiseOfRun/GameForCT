@@ -11,7 +11,7 @@ namespace new_Game
 
         public Towers ChosenTower = Towers.SmallTower;
 
-        public bool CanBuilded(PointF pos)
+        public bool CanBuilt(PointF pos)
         {
             foreach (var item in Form1.gameObjects.OfType<Enemy>())
             {
@@ -25,7 +25,7 @@ namespace new_Game
         }
         public void BuildTower(PointF tower)
         {
-            if (!CanBuilded(tower))
+            if (!CanBuilt(tower))
             {
                 return;
             }

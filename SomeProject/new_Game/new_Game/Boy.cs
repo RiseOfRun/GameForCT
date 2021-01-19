@@ -28,7 +28,7 @@ namespace new_Game
     }
     class Boy : Enemy
     {
-        private float speed = 0.05f;
+        private float speed = 0.1f;
         public List<PointF> path = new List<PointF>();
 
         public List<PointF> FindPath(GameField field, PointF b)
