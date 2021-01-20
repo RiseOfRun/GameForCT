@@ -35,6 +35,9 @@ namespace new_Game
                 }
                 item.Remove();
             }
+
+            GameController.Controller.TickCount = 0;
+            GameController.Controller.spawner.Count = 0;
             gameObjects = new List<GameObject>();
             MenuPanel.Visible = true;
         }
