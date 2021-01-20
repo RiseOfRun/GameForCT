@@ -30,7 +30,7 @@ namespace new_Game
                 Target = FindTarget();
                 return;
             }
-            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\Rocket.png",WorldPosition,this,0.3f));
+            Form1.gameObjects.Add(new Bullet(Target,damage,"Rocket.png",WorldPosition,this,0.3f));
         }
         
         public AntiAirTower(PointF pos, int cost = 100) : base(pos, cost)
@@ -41,7 +41,7 @@ namespace new_Game
             damage = 800;
             shootT.Interval = (int) (1000 / firerate);
             shootT.Start();
-            Sprite = Image.FromFile(@"new_Game\Guns\AntiAir_tower.png");
+            Sprite = Form1.MyImageList.Images["AntiAir_tower.png"];
             this.cost = Configs.AntiAirTowerCost;
             Spawn(pos);
         }

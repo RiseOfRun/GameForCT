@@ -31,6 +31,7 @@ namespace new_Game
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@ namespace new_Game
             this.ShowRecordsButton = new System.Windows.Forms.Button();
             this.StartGameButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.PlayerControl_Panel.SuspendLayout();
             this.BuildOptions_Panel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -268,6 +270,24 @@ namespace new_Game
             this.textBox1.Text = "User";
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "AirPlane.png");
+            this.imageList1.Images.SetKeyName(1, "Boy.png");
+            this.imageList1.Images.SetKeyName(2, "FastBoy.png");
+            this.imageList1.Images.SetKeyName(3, "MegaBoy.png");
+            this.imageList1.Images.SetKeyName(4, "AntiAir_tower.png");
+            this.imageList1.Images.SetKeyName(5, "bitBullet.png");
+            this.imageList1.Images.SetKeyName(6, "focus_tower.png");
+            this.imageList1.Images.SetKeyName(7, "lazer_gun1.png");
+            this.imageList1.Images.SetKeyName(8, "Rocket.png");
+            this.imageList1.Images.SetKeyName(9, "SmallBullet.png");
+            this.imageList1.Images.SetKeyName(10, "towerDefense_tile203.png");
+            this.imageList1.Images.SetKeyName(11, "towerDefense_tile204.png");
+            this.imageList1.Images.SetKeyName(12, "towerDefense_tile250.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +323,7 @@ namespace new_Game
         private System.Windows.Forms.Button CloseRecords;
         private System.Windows.Forms.Label ControlMode_label;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

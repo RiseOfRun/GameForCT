@@ -22,6 +22,7 @@ namespace new_Game
         Timer timer = new Timer();
         Timer cps = new Timer();
         GameField gf = GameField.MyGameField;
+        public static ImageList MyImageList;
         public static List<GameObject> gameObjects = new List<GameObject>();
 
         void RestartGame()
@@ -52,6 +53,7 @@ namespace new_Game
             button1.Text = Configs.BaseTowerCost.ToString();
             button2.Text = Configs.FocusTowerCost.ToString();
             button3.Text = Configs.AntiAirTowerCost.ToString();
+            MyImageList = imageList1;
         }
 
         public void Update()

@@ -18,7 +18,7 @@ namespace new_Game
 
         public Bullet(Enemy target,double damage, string sprite, PointF position, Tower parent,float speed = 0.5f)
         {
-            Sprite = Image.FromFile(sprite);
+            Sprite = Form1.MyImageList.Images[sprite];
             this.WorldPosition = position;
             this.target = target;
             this.damage = damage;

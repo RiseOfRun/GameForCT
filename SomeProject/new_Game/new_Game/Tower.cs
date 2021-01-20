@@ -46,7 +46,7 @@ namespace new_Game
                 Target = FindTarget();
                 return;
             }
-            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\SmallBullet.png",WorldPosition,this,0.25f));
+            Form1.gameObjects.Add(new Bullet(Target,damage,"SmallBullet.png",WorldPosition,this,0.25f));
         }
         
         public Tower(PointF pos, int cost=100)
@@ -55,7 +55,7 @@ namespace new_Game
             shootT.Enabled = true;
             shootT.Tick += ShootTimer_tick;
             shootT.Start();
-            Sprite = Image.FromFile(@"new_Game\Guns\lazer_gun1.png");
+            Sprite = Form1.MyImageList.Images["lazer_gun1.png"];
             this.cost = cost;
             Spawn(pos);
         }

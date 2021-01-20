@@ -34,7 +34,7 @@ namespace new_Game
                 Target = FindTarget();
                 return;
             }
-            Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\bitBullet.png",WorldPosition,this,0.3f));
+            Form1.gameObjects.Add(new Bullet(Target,damage,"bitBullet.png",WorldPosition,this,0.3f));
         }
         
         public FocusTower(PointF pos, int cost = 100) : base(pos, cost)
@@ -45,7 +45,7 @@ namespace new_Game
             range = 5;
             shootT.Interval = (int) (1000 / firerate);
             shootT.Start();
-            Sprite = Image.FromFile(@"new_Game\Guns\focus_tower.png");
+            Sprite = Form1.MyImageList.Images["focus_tower.png"];
             this.cost = Configs.FocusTowerCost;
             Spawn(pos);
         }

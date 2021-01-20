@@ -119,7 +119,7 @@ namespace new_Game
         {
             MaxHealth = health;
             CurrentHealth = health;
-            Sprite = Image.FromFile(@"new_Game\Boys\Boy.png");
+            Sprite = Form1.MyImageList.Images["Boy.png"];
             Reward = Configs.BoyReward;
             WannaMove(GameField.MyGameField);
         }
@@ -163,7 +163,7 @@ namespace new_Game
     {
         public MegaBoy(GameField field, double health = 100) : base(field, health)
         {
-            Sprite = Image.FromFile(@"new_Game\Boys\MegaBoy.png");
+            Sprite = Form1.MyImageList.Images["MegaBoy.png"];
             Reward = Configs.MegaBoyReward;
             scale = 2;
         }
@@ -173,7 +173,7 @@ namespace new_Game
     {
         public FastBoy(GameField field, double health = 100) : base(field, health)
         {
-            Sprite = Image.FromFile(@"new_Game\Boys\FastBoy.png");
+            Sprite = Form1.MyImageList.Images["FastBoy.png"];
             Reward = Configs.FastBoyReward;
             speed = 0.1f;
             scale = 0.8f;
@@ -188,7 +188,7 @@ namespace new_Game
             Reward = Configs.AirPlaneReward;
             MaxHealth = health;
             CurrentHealth = health;
-            Sprite = Image.FromFile(@"new_Game\Boys\AirPlane.png");
+            Sprite = Form1.MyImageList.Images["AirPlane.png"];
            
         }
         public override void Update()
