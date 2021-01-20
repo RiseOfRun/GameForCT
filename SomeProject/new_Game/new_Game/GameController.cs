@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace new_Game
@@ -43,10 +44,15 @@ namespace new_Game
 
         void ReadTopTen()
         {
-            if (!File.Exists("new_game/records.txt"))
+            if (!File.Exists(@"new_game/records.txt"))
             {
                 Directory.CreateDirectory("new_game/");
-                File.Create("new_game/records.txt");
+                using (FileStream fs = File.Create(@"new_game/records.txt"))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes("");
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
             }
             string[] topPlayers = File.ReadAllLines(@"new_game/records.txt");
             TopTen = new List<string>(topPlayers);
