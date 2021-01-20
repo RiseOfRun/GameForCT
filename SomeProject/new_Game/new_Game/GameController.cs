@@ -73,9 +73,9 @@ namespace new_Game
         }
         public GameController()
         {
-            TowerList.Add(Towers.SmallTower,100);
-            TowerList.Add(Towers.FocusTower,120);
-            TowerList.Add(Towers.AntiAirTower,110);
+            TowerList.Add(Towers.SmallTower,Configs.BaseTowerCost);
+            TowerList.Add(Towers.FocusTower,Configs.FocusTowerCost);
+            TowerList.Add(Towers.AntiAirTower,Configs.AntiAirTowerCost);
             players.Add(new Player());
             GameField Field = GameField.MyGameField;
             CurrentPlayer = players[0];

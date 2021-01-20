@@ -96,6 +96,7 @@ namespace new_Game
                 
                 GameController.Controller.CurrentPlayer.money += t.cost/2;
                 t.Alive = false;
+                t.Remove();
             }
         }
     }

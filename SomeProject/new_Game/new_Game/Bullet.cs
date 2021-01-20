@@ -38,6 +38,12 @@ namespace new_Game
             }
             diraction = PointExtensions.Scale(diraction, 1 / length);
             WorldPosition=PointExtensions.Sum(WorldPosition,PointExtensions.Scale(diraction,speed));
+            if (float.IsNaN(WorldPosition.X)|| float.IsNaN(WorldPosition.Y))
+            {
+                WorldPosition = target.WorldPosition;
+                this.Alive = false;
+                return;
+            }
             if (PointExtensions.Sub(WorldPosition, target.WorldPosition).GetLength()<speed)
             {
                 target.CurrentHealth -= damage;

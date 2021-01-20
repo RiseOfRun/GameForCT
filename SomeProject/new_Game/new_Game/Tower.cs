@@ -49,7 +49,7 @@ namespace new_Game
             Form1.gameObjects.Add(new Bullet(Target,damage,@"new_Game\Guns\SmallBullet.png",WorldPosition,this,0.25f));
         }
         
-        public Tower(PointF pos, int cost = 100)
+        public Tower(PointF pos, int cost=100)
         {
             shootT.Interval = (int) (1000/firerate);
             shootT.Enabled = true;
